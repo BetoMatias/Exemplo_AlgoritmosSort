@@ -1,0 +1,57 @@
+package Sorts;
+public class Merge {
+    
+    private static int[] vetor;
+	private static int[] vetorAuxiliar;
+        int contador;
+
+	public void mergeSort(int[] v) {
+		vetor = v;
+		vetorAuxiliar = new int[v.length];
+		sort(0, v.length - 1);
+                //System.out.println("Foram feitas " + contador + " comparações");
+              System.out.println(contador);
+	}
+
+	private void sort(int inicio, int fim) {
+            contador++;
+		if (inicio < fim) {           
+			int m = (inicio + fim) / 2;
+			sort(inicio, m);
+			sort(m + 1, fim);
+			mesclar(inicio, m, fim);
+		}
+	}
+
+	private void mesclar(int inicio, int m, int fim) {
+		int i, j, k;
+
+		// copia os elementos do vetor principal para o auxiliar
+		for (i = inicio; i <= fim; i++) {
+			vetorAuxiliar[i] = vetor[i];
+		}
+
+		i = inicio;
+		j = m + 1;
+		k = inicio;
+		while (i <= m && j <= fim) {
+			if (vetorAuxiliar[i] <= vetorAuxiliar[j])
+				vetor[k++] = vetorAuxiliar[i++];
+			else
+				vetor[k++] = vetorAuxiliar[j++];
+		}
+
+		while (i <= m) {
+			vetor[k++] = vetorAuxiliar[i++];
+		}
+	}
+
+
+	static void mostra(int[] v) {
+		for (int i = 0; i < v.length; i++) {
+			System.out.print(v[i] + " ");
+		}
+		System.out.println();
+	}
+    
+}
