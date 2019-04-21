@@ -1,0 +1,45 @@
+package Sorts;
+
+public class QuickSort {
+
+    int contador = 0;
+
+    public int quickSort(int[] v, int ini, int fim) {
+        int meio;
+        
+        if (ini < fim) { 
+            contador++;
+            meio = partition(v, ini, fim);
+            quickSort(v, ini, meio);
+            quickSort(v, meio + 1, fim);
+            
+        }
+      return contador;
+    }
+
+    public int partition(int[] v, int ini, int fim) {
+        int pivo, topo, i;
+        pivo = v[ini];
+        topo = ini;
+        
+        for (i = ini + 1; i <= fim; i++) {  
+            if (v[i] < pivo) {    
+                v[topo] = v[i];
+                v[i] = v[topo + 1];
+                topo++;
+            }
+        }
+        v[topo] = pivo;
+        return topo;
+    }
+
+    public static void mostrar(int[] vetor) {
+        int i;
+        System.out.print("{");
+        for (i = 0; i < vetor.length - 1; i++) {
+            System.out.print(vetor[i] + ", ");
+        }
+        System.out.println(vetor[i] + "}");
+    }
+
+}
